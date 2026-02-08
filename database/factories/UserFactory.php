@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\UserStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -25,6 +26,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
+            'status'=>UserStatus::Active->value,
             'email' => fake()->unique()->safeEmail(),
             'password' => Hash::make('password'),
         ];

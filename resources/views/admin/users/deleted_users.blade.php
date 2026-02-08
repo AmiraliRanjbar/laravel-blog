@@ -52,7 +52,7 @@
                             </form>
                         </td>
                         <td class="text-center align-middle">
-                            <form action="{{route('admin.user.delete', $user->id)}}" method="POST">
+                            <form action="{{route('admin.user.hard_delete', $user->id)}}" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <input type="submit" class="btn btn-outline-danger" value="حذف">

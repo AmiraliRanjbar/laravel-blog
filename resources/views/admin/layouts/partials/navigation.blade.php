@@ -25,6 +25,7 @@
             <li>
                 <a href="#">کاربران</a>
                 <ul>
+                    <li><a href="{{route('admin.panel')}}">صفحه اصلی</a></li>
                     <li><a href="{{route('admin.user.create')}}">ایجاد کاربر</a></li>
                     <li><a href="{{route('admin.users.index')}}">لیست کاربران</a></li>
                     <li><a href="{{route('admin.users.deleted')}}">کابران حذف شده</a></li>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\UserStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -15,7 +16,7 @@ class UserController extends Controller
         //Query Builder
         //  $users = DB::table('users')->get();
         //Eloquent
-        $users = User::query()->get();
+        $users = User::query()->userStatus(UserStatus::Active->value)->get();
         return view('admin.users.index', compact('users'));
     }
 
@@ -27,11 +28,24 @@ class UserController extends Controller
 
     public function restoreUser($id)
     {
-        $user =User::query()->onlyTrashed()->find($id);
+        $user = User::query()->onlyTrashed()->findOrFail($id);
         $user->restore();
 
-        $user = User::query()->onlyTrashed()->get();
-        return view('admin.users.deleted_users' , compact('user'));
+        $users = User::query()->onlyTrashed()->get();
+
+        return view('admin.users.deleted_users', [
+            'users'=>$users,
+        ]);
+    }
+
+    public function hardDeleteUser($id)
+    {
+        $user = User::query()->onlyTrashed()->findOrFail($id);
+        $user->forceDelete();
+
+        $users = User::query()->onlyTrashed()->get();
+
+        return view('admin.users.deleted_users', compact('users'));
     }
 
     public function create()

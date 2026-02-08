@@ -87,7 +87,7 @@ Route::get('/', function () {
 
 //CRUD Project
 Route::prefix('admin')->group(function () {
-    Route::get('/', PanelController::class);
+    Route::get('/', PanelController::class)->name('admin.panel');
     Route::get('/user', [UserController::class, 'index'])->name('admin.users.index');
     Route::get('/deleted_user', [UserController::class, 'deletedUsers'])->name('admin.users.deleted');
     Route::get('/user/create', [UserController::class, 'create'])->name('admin.user.create');
@@ -97,6 +97,7 @@ Route::prefix('admin')->group(function () {
     Route::delete('user/delete/{id}', [UserController::class, 'destroy'])->name('admin.user.delete');
 
     Route::put('/user/restore/{id}', [UserController::class, 'restoreUser'])->name('admin.user.restore');
+    Route::delete('/user/hard_delete/{id}', [UserController::class, 'hardDeleteUser'])->name('admin.user.hard_delete');
 });
 
 
