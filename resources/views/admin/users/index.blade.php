@@ -31,6 +31,7 @@
                         <th class="text-center align-middle text-primary">نام و نام خانوادگی</th>
                         <th class="text-center align-middle text-primary">ایمیل</th>
                         <th class="text-center align-middle text-primary">تاریخ ایجاد</th>
+                        <th class="text-center align-middle text-primary">وضعیت</th>
                         <th class="text-center align-middle text-primary">ویرایش</th>
                         <th class="text-center align-middle text-primary">حذف</th>
 
@@ -44,6 +45,7 @@
                         <td class="text-center align-middle">{{$user->name}}</td>
                         <td class="text-center align-middle">{{$user->email}}</td>
                         <td class="text-center align-middle">{{$user->created_at}}</td>
+                        <td class="text-center align-middle">{{$user->status}}</td>
                         <td class="text-center align-middle">
                             <a class="btn btn-outline-info" href="{{route('admin.user.edit', $user->id)}}">
                                 ویرایش

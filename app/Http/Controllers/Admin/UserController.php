@@ -16,7 +16,7 @@ class UserController extends Controller
         //Query Builder
         //  $users = DB::table('users')->get();
         //Eloquent
-        $users = User::query()->userStatus(UserStatus::Active->value)->get();
+        $users = User::query()->get();
         return view('admin.users.index', compact('users'));
     }
 
