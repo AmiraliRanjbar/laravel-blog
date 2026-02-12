@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
+
 class UserController extends Controller
 {
     public function index()
@@ -112,6 +113,7 @@ class UserController extends Controller
         $user->update([
             'name'=>$request->name,
             'email'=>$request->email,
+            'status'=>$request->status,
             'password'=>$request->password ? Hash::make($request->password) : $user->password,
         ]);
         return redirect()->route('admin.users.index')->with('message' , 'کاربر با موفقیت ویرایش شد');

@@ -32,9 +32,9 @@
                         <th class="text-center align-middle text-primary">ایمیل</th>
                         <th class="text-center align-middle text-primary">تاریخ ایجاد</th>
                         <th class="text-center align-middle text-primary">وضعیت</th>
+                        <th class="text-center align-middle text-primary">تاریخ بروزرسانی</th>
                         <th class="text-center align-middle text-primary">ویرایش</th>
                         <th class="text-center align-middle text-primary">حذف</th>
-
                     </tr>
                     </thead>
                     <tbody>
@@ -42,10 +42,11 @@
                 @foreach($users as $user)
                     <tr>
                         <td class="text-center align-middle">{{$user->id}}</td>
-                        <td class="text-center align-middle">{{$user->name}}</td>
+                        <td class="text-center align-middle">{{$user->full_name}}</td>
                         <td class="text-center align-middle">{{$user->email}}</td>
                         <td class="text-center align-middle">{{$user->created_at}}</td>
-                        <td class="text-center align-middle">{{$user->status}}</td>
+                        <td class="text-center align-middle">{{$user->user_status}}</td>
+                        <td class="text-center align-middle">{{$user->updated_at}}</td>
                         <td class="text-center align-middle">
                             <a class="btn btn-outline-info" href="{{route('admin.user.edit', $user->id)}}">
                                 ویرایش

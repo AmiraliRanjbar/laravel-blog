@@ -26,7 +26,8 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'status'=>UserStatus::Active->value,
+            'family'=>fake()->lastName(),
+            'status'=>UserStatus::Active,
             'email' => fake()->unique()->safeEmail(),
             'password' => Hash::make('password'),
         ];

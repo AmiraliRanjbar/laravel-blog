@@ -26,7 +26,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'status'
+        'family',
+        'status',
+        'updated_at',
     ];
 
     /**
@@ -67,19 +69,56 @@ class User extends Authenticatable
 
 
 //Accessor
-    public function getStatusAttribute($value)
+//    public function getStatusAttribute($value)
+//    {
+//        switch ($value) {
+//            case UserStatus::Active->value: return'فعال';
+//            break;
+//            case UserStatus::Active->value: return'غیرفعال';
+//                break;
+//            case UserStatus::Active->value: return'بن شده';
+//                break;
+//
+//            default:
+//               return "هیچکدام";
+//        }
+//    }
+
+    public function getUserStatusAttribute()
     {
-        switch ($value) {
+        switch ($this->status) {
             case UserStatus::Active->value: return'فعال';
-            break;
-            case UserStatus::Active->value: return'غیرفعال';
                 break;
-            case UserStatus::Active->value: return'بن شده';
+            case UserStatus::inActive->value: return'غیرفعال';
+                break;
+            case UserStatus::banned->value: return'بن شده';
                 break;
 
             default:
-               return "هیچکدام";
+                return "هیچکدام";
         }
+    }
+
+    //Status Color State
+    public  function color() : string
+    {
+        return match ($this->status) {
+            UserStatus::Active->value => 'success',
+            UserStatus::inActive->value=>'orange',
+            UserStatus::banned->value=>'danger',
+            default => 'default',
+        };
+    }
+
+    public function getFullNameAttribute()
+    {
+        return $this->name . ' ' . $this->family;
+    }
+
+
+    public function setEmailAttribute($value)
+    {
+        $this->attributes['email'] = strtolower($value);
     }
 }
 

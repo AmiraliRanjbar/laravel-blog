@@ -10,9 +10,15 @@
 {{--                    <input type="hidden" name="_token" value="{{csrf_token()}}">--}}
                     @csrf
                     <div class="form-group row">
-                        <label  class="col-sm-2 col-form-label">نام و نام خانوادگی</label>
+                        <label  class="col-sm-2 col-form-label">نام:</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control text-left"  dir="rtl" name="name">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-2 col-form-label">نام خانوادگی:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control text-left"  dir="rtl" name="family">
                         </div>
                     </div>
                     <div class="form-group row">

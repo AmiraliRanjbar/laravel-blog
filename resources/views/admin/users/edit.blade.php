@@ -23,6 +23,12 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label  class="col-sm-2 col-form-label">وضعیت</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control text-left" dir="rtl" name="status"  value="{{$user->user_status}}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label  class="col-sm-2 col-form-label">پسورد</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control text-left" dir="rtl" name="password">
