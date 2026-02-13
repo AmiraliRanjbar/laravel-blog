@@ -22,6 +22,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    //قبل از ذخیره این قسمت بررسی میشه لیست فیلد های مجاز
     protected $fillable = [
         'name',
         'email',

@@ -8,6 +8,7 @@ use App\UserStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 
 class UserController extends Controller
@@ -56,17 +57,24 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|min:3',
-            'email'=>'required|email|unique:users,email',
-            'password'=>'required|min:6',
-        ]);
+        Validator::make($request->all(), [
+            'name' => ['required' , 'string' , 'max:255'],
+            'family' => 'required | string | max:255',
+            'email'=>'required | unique:users, email | email',
+            'password'=>'required | min:6',
+        ],[
+            'name.required'=>"نام را وارد کنید",
+            'family.required'=>" نام خانوادگی را وارد کنید",
+            'email.required'=>"ایمیل را وارد کنید",
+            'password.required'=>"پسورد را وارد کنید",
 
-        $data = $request->all();
+        ])->validate();
 
-        $data['password'] = Hash::make($request->password);
+        User::query()->create($request->all());
 
-        User::query()->create($data);
+//        $data = $request->all();
+//        $data['password'] = Hash::make($request->password);
+//        User::query()->create($data);
 
         //Eloquent
 //        User::query()->create([
@@ -74,8 +82,8 @@ class UserController extends Controller
 //            'email'=>$request->email,
 //            'password'=>Hash::make($request->password),
 //        ]);
-        //بعد از ثبت نام یک صفحه دیگه بره
 
+        //بعد از ثبت نام یک صفحه دیگه بره
             return redirect()
                 ->route('admin.users.index')
                 ->with('createalert' , 'کاربر با موفقیت ایجاد شد');
