@@ -30,6 +30,7 @@ class User extends Authenticatable
         'family',
         'status',
         'updated_at',
+        'mobile',
     ];
 
     /**

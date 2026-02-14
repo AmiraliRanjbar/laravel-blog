@@ -29,6 +29,7 @@ class UserFactory extends Factory
             'family'=>fake()->lastName(),
             'status'=>UserStatus::Active,
             'email' => fake()->unique()->safeEmail(),
+            'mobile'=>fake()->unique()->phoneNumber(),
             'password' => Hash::make('password'),
         ];
     }
