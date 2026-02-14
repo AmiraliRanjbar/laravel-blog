@@ -101,15 +101,25 @@ class User extends Authenticatable
     }
 
     //Status Color State
-    public  function color() : string
-    {
-        return match ($this->status) {
-            UserStatus::Active->value => 'success',
-            UserStatus::inActive->value=>'orange',
-            UserStatus::banned->value=>'danger',
-            default => 'default',
-        };
-    }
+//    public  function color() : string
+//    {
+//        return match ($this->status) {
+//            UserStatus::Active->value => 'success',
+//            UserStatus::inActive->value=>'orange',
+//            UserStatus::banned->value=>'danger',
+//            default => 'default',
+//        };
+//    }
+
+public function  ColorState() : string
+{
+    return match ($this->status) {
+        UserStatus::Active->value => 'Success',
+        UserStatus::inActive->value => 'orange',
+        UserStatus::banned->value => 'danger',
+        default => 'default',
+    };
+}
 
     public function getFullNameAttribute()
     {

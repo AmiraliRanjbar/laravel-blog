@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use App\UserStatus;
 use Illuminate\Http\Request;
@@ -55,20 +56,35 @@ class UserController extends Controller
         return view('admin.users.create');
     }
 
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        Validator::make($request->all(), [
-            'name' => ['required' , 'string' , 'max:255'],
-            'family' => 'required | string | max:255',
-            'email'=>'required | unique:users, email | email',
-            'password'=>'required | min:6',
-        ],[
-            'name.required'=>"نام را وارد کنید",
-            'family.required'=>" نام خانوادگی را وارد کنید",
-            'email.required'=>"ایمیل را وارد کنید",
-            'password.required'=>"پسورد را وارد کنید",
+        //روش 1
+//        Validator::make($request->all(), [
+////            'name' => ['required' , 'string' , 'max:255'],
+////            'family' => 'required | string | max:255',
+////            'email'=>'required | unique:users, email | email',
+////            'password'=>'required | min:6',
+////        ],[
+////            'name.required'=>"نام را وارد کنید",
+////            'family.required'=>" نام خانوادگی را وارد کنید",
+////            'email.required'=>"ایمیل را وارد کنید",
+////            'password.required'=>"پسورد را وارد کنید",
+////
+////        ])->validate();
 
-        ])->validate();
+        //روش2
+//        $request->validate([
+//            'name' => ['required', 'string', 'max:255'],
+//            'family' => 'required | string | max:255',
+//            'email' => 'required | unique:users, email | email',
+//            'password' => 'required | min:6',
+//        ] , [
+//            'name.required'=>"نام را وارد کنید",
+//            'family.required'=>" نام خانوادگی را وارد کنید",
+//            'email.required'=>"ایمیل را وارد کنید",
+//            'password.required'=>"پسورد را وارد کنید",
+//        ]);
+
 
         User::query()->create($request->all());
 
