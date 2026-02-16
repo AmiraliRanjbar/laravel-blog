@@ -112,15 +112,15 @@ class User extends Authenticatable
 //        };
 //    }
 
-public function  ColorState() : string
-{
-    return match ($this->status) {
-        UserStatus::Active->value => 'Success',
-        UserStatus::inActive->value => 'orange',
-        UserStatus::banned->value => 'danger',
-        default => 'default',
-    };
-}
+//public function  ColorState() : string
+//{
+//    return match ($this->status) {
+//        UserStatus::Active->value => 'Success',
+//        UserStatus::inActive->value => 'orange',
+//        UserStatus::banned->value => 'danger',
+//        default => 'default',
+//    };
+//}
 
     public function getFullNameAttribute()
     {

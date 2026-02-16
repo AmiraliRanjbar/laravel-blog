@@ -2,6 +2,25 @@
 
 
 @section('content')
+    @php
+    $color= ['red'];
+    @endphp
+
+{{--    @empty($color)--}}
+{{--        {{var_dump('set')}}--}}
+{{--    @else--}}
+{{--        {{var_dump('onset')}}--}}
+{{--    @endempty--}}
+    @switch($color)
+        @case(['red'])
+        {{var_dump('color is red')}}
+        @break
+        @case(['blue'])
+        {{var_dump('color is blue')}}
+        @break
+        @default
+        {{var_dump('color')}}
+    @endswitch
     <div class="card">
         <div class="card-body">
             <div class="table overflow-auto" tabindex="8">
@@ -45,7 +64,13 @@
                         <td class="text-center align-middle">{{$user->full_name}}</td>
                         <td class="text-center align-middle">{{$user->email}}</td>
                         <td class="text-center align-middle">{{$user->created_at}}</td>
-                        <td class="text-center align-middle">{{$user->user_status}}</td>
+                        <td  @class([
+                               'text-center align-middle',
+                               'text-success' => $user->status == \App\UserStatus::Active->value,
+                                'text-danger'  => $user->status == \App\UserStatus::inActive->value,
+                                ])>
+                            {{$user->user_status}}
+                        </td>
                         <td class="text-center align-middle">{{$user->updated_at}}</td>
                         <td class="text-center align-middle">
                             <a class="btn btn-outline-info" href="{{route('admin.user.edit', $user->id)}}">
@@ -58,9 +83,33 @@
                                 @csrf
                                 <input type="submit" class="btn btn-outline-danger" value="حذف">
                             </form>
-                        </td>
+                        </td>-
                     </tr>
                 @endforeach
+
+{{--@for($i = 0; $i<count($users); $i++)--}}
+{{--    <tr>--}}
+{{--        <td class="text-center align-middle">{{$users[$i]->id}}</td>--}}
+{{--        <td class="text-center align-middle">{{$users[$i]->full_name}}</td>--}}
+{{--        <td class="text-center align-middle">{{$users[$i]->email}}</td>--}}
+{{--        <td class="text-center align-middle">{{$users[$i]->created_at}}</td>--}}
+{{--        <td class="text-center align-middle">{{$users[$i]->user_status}}</td>--}}
+{{--        <td class="text-center align-middle">{{$users[$i]->updated_at}}</td>--}}
+{{--        <td class="text-center align-middle">--}}
+{{--            <a class="btn btn-outline-info" href="{{route('admin.user.edit', $users[$i]->id)}}">--}}
+{{--                ویرایش--}}
+{{--            </a>--}}
+{{--        </td>--}}
+{{--        <td class="text-center align-middle">--}}
+{{--            <form action="{{route('admin.user.delete', $users[$i]->id)}}" method="POST">--}}
+{{--                @method('DELETE')--}}
+{{--                @csrf--}}
+{{--                <input type="submit" class="btn btn-outline-danger" value="حذف">--}}
+{{--            </form>--}}
+{{--        </td>--}}
+{{--    </tr>--}}
+{{--@endfor--}}
+
                 <div style="margin: 40px !important;"
                      class="pagination pagination-rounded pagination-sm d-flex justify-content-center">
                 </div>
