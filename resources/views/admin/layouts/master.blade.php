@@ -27,5 +27,8 @@
 <script src="{{asset('panel/vendors/slick/slick.min.js')}}"></script>
 <script src="{{asset('panel/vendors/vmap/jquery.vmap.min.js')}}"></script>
 <script src="{{asset('panel/assets/js/app.js')}}"></script>
+
+@yield('scripts')
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </html>

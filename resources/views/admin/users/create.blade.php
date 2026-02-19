@@ -1,26 +1,15 @@
 @extends('admin.layouts.master')
 
-
 @section('content')
     <div class="card">
         <div class="card-body">
             <div class="container">
                 <h4 class="card-title">ایجاد کاربر</h4>
-
                 @include('admin.layouts.partials.errors')
-
                 <form method="POST" action="{{route('admin.user.store')}}">
 {{--                    <input type="hidden" name="_token" value="{{csrf_token()}}">--}}
                     @csrf
-                    <div class="form-group row">
-                        <label  class="col-sm-2 col-form-label">نام:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control text-left"  dir="rtl" name="name" value="{{old('name')}}">
-                        </div>
-                        @error('name')
-                        <p style="color: red">{{$message}}</p>
-                        @enderror
-                    </div>
+                    <x-admin.text-input-component label="نام"/>
                     <div class="form-group row">
                         <label  class="col-sm-2 col-form-label">نام خانوادگی</label>
                         <div class="col-sm-10">
@@ -61,7 +50,6 @@
                         <button type="submit" class="btn btn-success btn-uppercase">
                             <i class="ti-check-box m-r-5"></i> ذخیره
                         </button>
-
                     </div>
                 </form>
             </div>

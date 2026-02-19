@@ -2,25 +2,25 @@
 
 
 @section('content')
-    @php
-    $color= ['red'];
-    @endphp
+{{--    @php--}}
+{{--    $color= ['red'];--}}
+{{--    @endphp--}}
 
 {{--    @empty($color)--}}
 {{--        {{var_dump('set')}}--}}
 {{--    @else--}}
 {{--        {{var_dump('onset')}}--}}
 {{--    @endempty--}}
-    @switch($color)
-        @case(['red'])
-        {{var_dump('color is red')}}
-        @break
-        @case(['blue'])
-        {{var_dump('color is blue')}}
-        @break
-        @default
-        {{var_dump('color')}}
-    @endswitch
+{{--    @switch($color)--}}
+{{--        @case(['red'])--}}
+{{--        {{var_dump('color is red')}}--}}
+{{--        @break--}}
+{{--        @case(['blue'])--}}
+{{--        {{var_dump('color is blue')}}--}}
+{{--        @break--}}
+{{--        @default--}}
+{{--        {{var_dump('color')}}--}}
+{{--    @endswitch--}}
     <div class="card">
         <div class="card-body">
             <div class="table overflow-auto" tabindex="8">
@@ -30,17 +30,18 @@
                         <input type="text" class="form-control text-left" dir="rtl" wire:model="search">
                     </div>
                 </div>
-                <!--Create ALert-->
                 <p style="font-size: 18px;font-weight: bold">لیست کاربران</p>
                 @if(session()->has('createalert'))
-                    <div style="background-color: green;width: 300px; padding:2px">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <p style="color: white">{{session('createalert')}}</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
-                <!--Update ALert-->
+
                 @if(session()->has('message'))
-                    <div style="background-color: green;width: 300px; padding:2px">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <p style="color: white">{{session('message')}}</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
                 <table class="table table-striped table-hover">
@@ -64,12 +65,25 @@
                         <td class="text-center align-middle">{{$user->full_name}}</td>
                         <td class="text-center align-middle">{{$user->email}}</td>
                         <td class="text-center align-middle">{{$user->created_at}}</td>
-                        <td  @class([
-                               'text-center align-middle',
-                               'text-success' => $user->status == \App\UserStatus::Active->value,
-                                'text-danger'  => $user->status == \App\UserStatus::inActive->value,
+{{--                        <td  @class([--}}
+{{--                               'text-center align-middle',--}}
+{{--                               'text-success' => $user->status == \App\UserStatus::Active->value,--}}
+{{--                                'text-danger'  => $user->status == \App\UserStatus::inActive->value,--}}
+{{--                                ])>--}}
+{{--                            {{$user->user_status}}--}}
+{{--                        </td>--}}
+                        <td class="text-center align-middle"
+                            @style([
+                               'color:red' => $user->status == \App\UserStatus::inActive->value,
+                                'color:green'  => $user->status == \App\UserStatus::Active->value,
+                                'color:orange' => $user->status == \App\UserStatus::banned->value,
                                 ])>
-                            {{$user->user_status}}
+
+                            <p @style([
+                                'background-color: lightgreen; border-radius: 10px;color: black;' => $user->status == \App\UserStatus::Active->value,
+                                'background-color: red; border-radius: 10px;color: white;' => $user->status == \App\UserStatus::inActive->value,
+                                'background-color: orange; border-radius: 10px;color: white;' => $user->status == \App\UserStatus::banned->value,
+                            ])>{{$user->user_status}}</p>
                         </td>
                         <td class="text-center align-middle">{{$user->updated_at}}</td>
                         <td class="text-center align-middle">
@@ -118,3 +132,10 @@
         </div>
     </div>
 @endsection
+
+{{--@section('scripts')--}}
+{{--    <script>--}}
+{{--        let data = <?php echo  json_encode($data); ?>;--}}
+{{--        let data1 = <?php  @json($data) ?>;--}}
+{{--    </script>--}}
+{{--@endsection--}}

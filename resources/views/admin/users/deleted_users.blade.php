@@ -31,7 +31,7 @@
                         <th class="text-center align-middle text-primary">نام و نام خانوادگی</th>
                         <th class="text-center align-middle text-primary">ایمیل</th>
                         <th class="text-center align-middle text-primary">تاریخ ایجاد</th>
-                        <th class="text-center align-middle text-primary">ویرایش</th>
+                        <th class="text-center align-middle text-primary">بازنشانی</th>
                         <th class="text-center align-middle text-primary">حذف</th>
 
                     </tr>
@@ -48,7 +48,7 @@
                             <form action="{{route('admin.user.restore', $user->id)}}" method="POST">
                                 @method('PUT')
                                 @csrf
-                                <input type="submit" class="btn btn-outline-danger" value="بازنشانی">
+                                <input type="submit" class="btn btn-outline-primary" value="بازنشانی کاربر">
                             </form>
                         </td>
                         <td class="text-center align-middle">
