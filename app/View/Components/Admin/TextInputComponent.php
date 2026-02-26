@@ -9,9 +9,13 @@ use Illuminate\View\Component;
 class TextInputComponent extends Component
 {
     public $label;
-    public function __construct($label)
+    public $name;
+    public $title;
+    public function __construct($label, $name, $title=null)
     {
         $this->label = $label;
+        $this->name = $name;
+        $this->title = $title;
     }
 
     /**

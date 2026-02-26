@@ -9,16 +9,11 @@
                 <form method="POST" action="{{route('admin.user.store')}}">
 {{--                    <input type="hidden" name="_token" value="{{csrf_token()}}">--}}
                     @csrf
-                    <x-admin.text-input-component label="نام"/>
-                    <div class="form-group row">
-                        <label  class="col-sm-2 col-form-label">نام خانوادگی</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control text-left"  dir="rtl" name="family" value="{{old('family')}}">
-                        </div>
-                        @error('family')
-                        <p style="color: red">{{$message}}</p>
-                        @enderror
-                    </div>
+                    @php
+                    $title = 'Data1';
+                    @endphp
+                    <x-admin.text-input-component label="نام" name="name" :text="$title"/>
+                    <x-admin.text-input-component label="نام خانوادگی" name="family" />
                     <div class="form-group row">
                         <label  class="col-sm-2 col-form-label">ایمیل</label>
                         <div class="col-sm-10">
